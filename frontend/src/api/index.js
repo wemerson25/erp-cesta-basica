@@ -41,6 +41,11 @@ export const itensApi = {
   deletar: (id) => req(`/itens/${id}`, { method: 'DELETE' }),
 }
 
+export const configuracoesApi = {
+  listar: () => req('/configuracoes'),
+  atualizar: (chave, valor) => req(`/configuracoes/${chave}`, { method: 'PATCH', body: { valor: String(valor) } }),
+}
+
 export const relatoriosApi = {
   resumo: (mes_referencia) => req(`/relatorios/resumo?mes_referencia=${mes_referencia}`),
   evolucao: () => req('/relatorios/evolucao'),

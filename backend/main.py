@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from database import engine
 import models
-from routers import clientes, itens, tipos_cesta, vendas, pagamentos, compras, estoque, relatorios
+from routers import clientes, itens, tipos_cesta, vendas, pagamentos, compras, estoque, relatorios, configuracoes
 
 
 def _seed_configuracoes():
@@ -61,6 +61,7 @@ app.include_router(pagamentos.router)
 app.include_router(compras.router)
 app.include_router(estoque.router)
 app.include_router(relatorios.router)
+app.include_router(configuracoes.router)
 
 # Serve frontend static files (frontend/dist/ committed to repo)
 _frontend = pathlib.Path(__file__).parent.parent / "frontend" / "dist"

@@ -20,7 +20,7 @@ const NAV = [
     section: 'Análise',
     items: [
       { path: '/relatorios', label: 'Relatórios', icon: '📊', enabled: true },
-      { path: '/configuracoes', label: 'Configurações', icon: '⚙️', enabled: false },
+      { path: '/configuracoes', label: 'Configurações', icon: '⚙️', enabled: true },
     ],
   },
 ]

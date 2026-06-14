@@ -8,6 +8,7 @@ import Vendas from './pages/Vendas'
 import Pagamentos from './pages/Pagamentos'
 import Estoque from './pages/Estoque'
 import Relatorios from './pages/Relatorios'
+import Configuracoes from './pages/Configuracoes'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="pagamentos" element={<Pagamentos />} />
         <Route path="estoque" element={<Estoque />} />
         <Route path="relatorios" element={<Relatorios />} />
+        <Route path="configuracoes" element={<Configuracoes />} />
       </Route>
     </Routes>
   )

@@ -247,3 +247,18 @@ class CustoCestaMensalResponse(BaseModel):
 
 class MesInput(BaseModel):
     mes_referencia: str
+
+
+# ── Configurações ─────────────────────────────────────────────────────────────
+
+class ConfiguracaoResponse(BaseModel):
+    id: int
+    chave: str
+    valor: str
+    descricao: Optional[str] = None
+
+    model_config = {"from_attributes": True}
+
+
+class ConfiguracaoUpdate(BaseModel):
+    valor: str
