@@ -13,7 +13,7 @@ const NAV = [
     items: [
       { path: '/vendas', label: 'Vendas', icon: '🛒', enabled: true },
       { path: '/pagamentos', label: 'Pagamentos', icon: '💰', enabled: true },
-      { path: '/estoque', label: 'Estoque & Compras', icon: '📦', enabled: false },
+      { path: '/estoque', label: 'Estoque & Compras', icon: '📦', enabled: true },
     ],
   },
   {

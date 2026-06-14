@@ -41,6 +41,32 @@ export const itensApi = {
   deletar: (id) => req(`/itens/${id}`, { method: 'DELETE' }),
 }
 
+export const comprasApi = {
+  listar: ({ mes_referencia, item_id } = {}) => {
+    const q = new URLSearchParams()
+    if (mes_referencia) q.append('mes_referencia', mes_referencia)
+    if (item_id) q.append('item_id', item_id)
+    const qs = q.toString()
+    return req(`/compras${qs ? '?' + qs : ''}`)
+  },
+  criar: (data) => req('/compras', { method: 'POST', body: data }),
+  deletar: (id) => req(`/compras/${id}`, { method: 'DELETE' }),
+}
+
+export const estoqueApi = {
+  listarSaldo: (mes_referencia) => {
+    const q = mes_referencia ? `?mes_referencia=${mes_referencia}` : ''
+    return req(`/estoque${q}`)
+  },
+  iniciarMes: (mes_referencia) => req('/estoque/iniciar-mes', { method: 'POST', body: { mes_referencia } }),
+  calcularConsumo: (mes_referencia) => req('/estoque/calcular-consumo', { method: 'POST', body: { mes_referencia } }),
+  listarCustoCesta: (mes_referencia) => {
+    const q = mes_referencia ? `?mes_referencia=${mes_referencia}` : ''
+    return req(`/custo-cesta${q}`)
+  },
+  recalcularCustos: (mes_referencia) => req('/custo-cesta/recalcular', { method: 'POST', body: { mes_referencia } }),
+}
+
 export const pagamentosApi = {
   listar: ({ status, cliente_id, mes_referencia } = {}) => {
     const q = new URLSearchParams()

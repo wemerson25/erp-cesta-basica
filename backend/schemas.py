@@ -190,3 +190,60 @@ class PagamentoDetalheResponse(BaseModel):
 class ReceberPagamentoInput(BaseModel):
     valor_pago: float
     data_pagamento: Optional[date] = None
+
+
+# ── Estoque & Compras ─────────────────────────────────────────────────────────
+
+class CompraCreate(BaseModel):
+    item_id: int
+    mes_referencia: str
+    quantidade_comprada: float
+    valor_unitario: float
+    fornecedor: Optional[str] = None
+    data_compra: Optional[date] = None
+
+
+class CompraResponse(BaseModel):
+    id: int
+    item_id: int
+    mes_referencia: str
+    quantidade_comprada: float
+    valor_unitario: float
+    valor_total: float
+    data_compra: Optional[date] = None
+    fornecedor: Optional[str] = None
+    item: ItemResponse
+
+    model_config = {"from_attributes": True}
+
+
+class SaldoMensalResponse(BaseModel):
+    id: int
+    item_id: int
+    mes_referencia: str
+    quantidade_inicial: float
+    valor_inicial: float
+    quantidade_comprada_mes: float
+    valor_comprado_mes: float
+    custo_medio_mes: float
+    quantidade_consumida_mes: float
+    quantidade_final: float
+    valor_final: float
+    item: ItemResponse
+
+    model_config = {"from_attributes": True}
+
+
+class CustoCestaMensalResponse(BaseModel):
+    id: int
+    tipo_cesta_id: int
+    mes_referencia: str
+    custo_total_calculado: float
+    margem_calculada: float
+    tipo_cesta: TipoCestaSimples
+
+    model_config = {"from_attributes": True}
+
+
+class MesInput(BaseModel):
+    mes_referencia: str
