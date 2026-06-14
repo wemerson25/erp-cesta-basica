@@ -9,8 +9,10 @@ erp_cesta.db
 
 # Node
 node_modules/
-frontend/dist/
+# frontend/dist/ incluido no repo para Vercel
 .DS_Store
 
 # Vercel
 .vercel/
+
+.vercel

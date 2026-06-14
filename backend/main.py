@@ -1,8 +1,10 @@
 import os
+import pathlib
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from database import engine
 import models
@@ -55,7 +57,11 @@ app.include_router(clientes.router)
 app.include_router(itens.router)
 app.include_router(tipos_cesta.router)
 
-
-@app.get("/")
-def root():
-    return {"status": "ok", "app": "ERP Cesta Básica", "version": "1.0.0"}
+# Serve frontend static files (frontend/dist/ committed to repo)
+_frontend = pathlib.Path(__file__).parent.parent / "frontend" / "dist"
+if _frontend.exists():
+    app.mount("/", StaticFiles(directory=str(_frontend), html=True), name="static")
+else:
+    @app.get("/")
+    def root():
+        return {"status": "ok", "app": "ERP Cesta Básica", "version": "1.0.0"}
