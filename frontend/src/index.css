@@ -584,6 +584,12 @@ tbody td {
   gap: 16px;
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+}
+
 /* ── Alerts ────────────────────────────────────────────────────────────────── */
 .alert {
   padding: 10px 14px;

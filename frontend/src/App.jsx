@@ -7,6 +7,7 @@ import CestaDetalhe from './pages/Cestas/CestaDetalhe'
 import Vendas from './pages/Vendas'
 import Pagamentos from './pages/Pagamentos'
 import Estoque from './pages/Estoque'
+import Relatorios from './pages/Relatorios'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="vendas" element={<Vendas />} />
         <Route path="pagamentos" element={<Pagamentos />} />
         <Route path="estoque" element={<Estoque />} />
+        <Route path="relatorios" element={<Relatorios />} />
       </Route>
     </Routes>
   )

@@ -19,7 +19,7 @@ const NAV = [
   {
     section: 'Análise',
     items: [
-      { path: '/relatorios', label: 'Relatórios', icon: '📊', enabled: false },
+      { path: '/relatorios', label: 'Relatórios', icon: '📊', enabled: true },
       { path: '/configuracoes', label: 'Configurações', icon: '⚙️', enabled: false },
     ],
   },

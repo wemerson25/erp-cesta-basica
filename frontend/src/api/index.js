@@ -41,6 +41,15 @@ export const itensApi = {
   deletar: (id) => req(`/itens/${id}`, { method: 'DELETE' }),
 }
 
+export const relatoriosApi = {
+  resumo: (mes_referencia) => req(`/relatorios/resumo?mes_referencia=${mes_referencia}`),
+  evolucao: () => req('/relatorios/evolucao'),
+  clientes: (mes_referencia) => {
+    const q = mes_referencia ? `?mes_referencia=${mes_referencia}` : ''
+    return req(`/relatorios/clientes${q}`)
+  },
+}
+
 export const comprasApi = {
   listar: ({ mes_referencia, item_id } = {}) => {
     const q = new URLSearchParams()
