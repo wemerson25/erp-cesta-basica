@@ -30,8 +30,11 @@ def _seed_configuracoes():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    models.Base.metadata.create_all(bind=engine)
-    _seed_configuracoes()
+    try:
+        models.Base.metadata.create_all(bind=engine)
+        _seed_configuracoes()
+    except Exception as e:
+        print(f"[startup] DB init error: {e}")
     yield
 
 

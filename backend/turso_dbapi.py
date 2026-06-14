@@ -14,11 +14,11 @@ def _make_arg(v):
     if v is None:
         return {"type": "null", "value": None}
     if isinstance(v, bool):
-        return {"type": "integer", "value": int(v)}
+        return {"type": "integer", "value": str(int(v))}
     if isinstance(v, int):
-        return {"type": "integer", "value": v}
+        return {"type": "integer", "value": str(v)}
     if isinstance(v, float):
-        return {"type": "float", "value": v}
+        return {"type": "float", "value": str(v)}
     if isinstance(v, bytes):
         return {"type": "blob", "base64": base64.b64encode(v).decode()}
     return {"type": "text", "value": str(v)}
@@ -125,6 +125,7 @@ class Cursor:
 
 class Connection:
     closed = False
+    isolation_level = ""
 
     def __init__(self, db_url, auth_token):
         host = db_url.replace("libsql://", "").replace("https://", "").rstrip("/")
