@@ -126,6 +126,8 @@ class Cursor:
 class Connection:
     closed = False
     isolation_level = ""
+    row_factory = None
+    text_factory = str
 
     def __init__(self, db_url, auth_token):
         host = db_url.replace("libsql://", "").replace("https://", "").rstrip("/")
@@ -160,6 +162,22 @@ class Connection:
 
     def in_transaction(self):
         return False
+
+    # sqlite3-specific methods that SQLAlchemy's pysqlite dialect calls on connect
+    def create_function(self, name, num_params, func, *args, **kwargs):
+        pass
+
+    def create_aggregate(self, name, num_params, aggregate_class):
+        pass
+
+    def create_collation(self, name, callable_):
+        pass
+
+    def set_authorizer(self, authorizer_callback):
+        pass
+
+    def enable_load_extension(self, enabled):
+        pass
 
     def __enter__(self):
         return self
