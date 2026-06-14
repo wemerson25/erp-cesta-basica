@@ -1,17 +1,18 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.pool import NullPool
 
 TURSO_DATABASE_URL = os.getenv("TURSO_DATABASE_URL")
-TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
+TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN", "")
 
 if TURSO_DATABASE_URL:
-    import libsql_experimental as libsql
+    from turso_dbapi import connect as _turso_connect
 
-    def _make_turso_connection():
-        return libsql.connect(database=TURSO_DATABASE_URL, auth_token=TURSO_AUTH_TOKEN or "")
+    def _creator():
+        return _turso_connect(TURSO_DATABASE_URL, TURSO_AUTH_TOKEN)
 
-    engine = create_engine("sqlite+pysqlite://", creator=_make_turso_connection)
+    engine = create_engine("sqlite+pysqlite://", creator=_creator, poolclass=NullPool)
 else:
     DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./erp_cesta.db")
     connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
