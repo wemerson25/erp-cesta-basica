@@ -10,7 +10,7 @@ import schemas
 router = APIRouter(prefix="/api/itens", tags=["itens"])
 
 
-@router.get("/", response_model=List[schemas.ItemResponse])
+@router.get("", response_model=List[schemas.ItemResponse])
 def listar_itens(busca: Optional[str] = None, db: Session = Depends(get_db)):
     q = db.query(models.Item)
     if busca:
@@ -18,7 +18,7 @@ def listar_itens(busca: Optional[str] = None, db: Session = Depends(get_db)):
     return q.order_by(models.Item.nome).all()
 
 
-@router.post("/", response_model=schemas.ItemResponse, status_code=201)
+@router.post("", response_model=schemas.ItemResponse, status_code=201)
 def criar_item(payload: schemas.ItemCreate, db: Session = Depends(get_db)):
     item = models.Item(
         nome=payload.nome.strip(),

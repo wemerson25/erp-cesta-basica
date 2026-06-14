@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/clientes", tags=["clientes"])
 STATUSES_VALIDOS = {"ativo", "inativo", "inadimplente"}
 
 
-@router.get("/", response_model=List[schemas.ClienteResponse])
+@router.get("", response_model=List[schemas.ClienteResponse])
 def listar_clientes(
     status: Optional[str] = None,
     busca: Optional[str] = None,
@@ -27,7 +27,7 @@ def listar_clientes(
     return q.order_by(models.Cliente.nome).all()
 
 
-@router.post("/", response_model=schemas.ClienteResponse, status_code=201)
+@router.post("", response_model=schemas.ClienteResponse, status_code=201)
 def criar_cliente(payload: schemas.ClienteCreate, db: Session = Depends(get_db)):
     cliente = models.Cliente(
         nome=payload.nome.strip(),

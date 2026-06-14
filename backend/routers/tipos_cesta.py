@@ -21,7 +21,7 @@ def _buscar_com_composicao(db: Session, cesta_id: int) -> models.TipoCesta:
     )
 
 
-@router.get("/", response_model=List[schemas.TipoCestaResponse])
+@router.get("", response_model=List[schemas.TipoCestaResponse])
 def listar_tipos(db: Session = Depends(get_db)):
     return (
         db.query(models.TipoCesta)
@@ -33,7 +33,7 @@ def listar_tipos(db: Session = Depends(get_db)):
     )
 
 
-@router.post("/", response_model=schemas.TipoCestaResponse, status_code=201)
+@router.post("", response_model=schemas.TipoCestaResponse, status_code=201)
 def criar_tipo(payload: schemas.TipoCestaCreate, db: Session = Depends(get_db)):
     cesta = models.TipoCesta(
         nome=payload.nome.strip(),
