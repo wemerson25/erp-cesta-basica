@@ -107,3 +107,54 @@ class ComposicaoItemInput(BaseModel):
 
 class ComposicaoUpdate(BaseModel):
     itens: List[ComposicaoItemInput]
+
+
+# ── Vendas ────────────────────────────────────────────────────────────────────
+
+class TipoCestaSimples(BaseModel):
+    id: int
+    nome: str
+    preco_venda: float
+
+    model_config = {"from_attributes": True}
+
+
+class PagamentoResponse(BaseModel):
+    id: int
+    venda_id: int
+    cliente_id: int
+    valor_esperado: float
+    valor_pago: Optional[float] = None
+    data_pagamento: Optional[date] = None
+    status: str
+    data_vencimento: Optional[date] = None
+
+    model_config = {"from_attributes": True}
+
+
+class VendaCreate(BaseModel):
+    cliente_id: int
+    tipo_cesta_id: int
+    mes_referencia: str  # YYYY-MM
+    quantidade: int = 1
+    forma_pagamento: str  # vista/prazo
+
+
+class VendaEntregaUpdate(BaseModel):
+    status_entrega: str
+
+
+class VendaResponse(BaseModel):
+    id: int
+    cliente_id: int
+    tipo_cesta_id: int
+    mes_referencia: str
+    quantidade: int
+    forma_pagamento: str
+    status_entrega: str
+    data_venda: Optional[date] = None
+    cliente: ClienteResponse
+    tipo_cesta: TipoCestaSimples
+    pagamentos: List[PagamentoResponse] = []
+
+    model_config = {"from_attributes": True}

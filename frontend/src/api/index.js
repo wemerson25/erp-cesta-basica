@@ -41,6 +41,21 @@ export const itensApi = {
   deletar: (id) => req(`/itens/${id}`, { method: 'DELETE' }),
 }
 
+export const vendasApi = {
+  listar: ({ mes_referencia, cliente_id, status_entrega } = {}) => {
+    const q = new URLSearchParams()
+    if (mes_referencia) q.append('mes_referencia', mes_referencia)
+    if (cliente_id) q.append('cliente_id', cliente_id)
+    if (status_entrega) q.append('status_entrega', status_entrega)
+    const qs = q.toString()
+    return req(`/vendas${qs ? '?' + qs : ''}`)
+  },
+  criar: (data) => req('/vendas', { method: 'POST', body: data }),
+  atualizarEntrega: (id, status_entrega) =>
+    req(`/vendas/${id}/entrega`, { method: 'PATCH', body: { status_entrega } }),
+  deletar: (id) => req(`/vendas/${id}`, { method: 'DELETE' }),
+}
+
 export const tiposCestaApi = {
   listar: () => req('/tipos-cesta'),
   buscar: (id) => req(`/tipos-cesta/${id}`),

@@ -4,6 +4,7 @@ import Clientes from './pages/Clientes'
 import ClienteDetalhe from './pages/Clientes/ClienteDetalhe'
 import Cestas from './pages/Cestas'
 import CestaDetalhe from './pages/Cestas/CestaDetalhe'
+import Vendas from './pages/Vendas'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="clientes/:id" element={<ClienteDetalhe />} />
         <Route path="cestas" element={<Cestas />} />
         <Route path="cestas/:id" element={<CestaDetalhe />} />
+        <Route path="vendas" element={<Vendas />} />
       </Route>
     </Routes>
   )

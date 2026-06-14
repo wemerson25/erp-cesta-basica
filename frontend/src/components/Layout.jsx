@@ -11,7 +11,7 @@ const NAV = [
   {
     section: 'Operações',
     items: [
-      { path: '/vendas', label: 'Vendas', icon: '🛒', enabled: false },
+      { path: '/vendas', label: 'Vendas', icon: '🛒', enabled: true },
       { path: '/pagamentos', label: 'Pagamentos', icon: '💰', enabled: false },
       { path: '/estoque', label: 'Estoque & Compras', icon: '📦', enabled: false },
     ],
