@@ -41,6 +41,19 @@ export const itensApi = {
   deletar: (id) => req(`/itens/${id}`, { method: 'DELETE' }),
 }
 
+export const pagamentosApi = {
+  listar: ({ status, cliente_id, mes_referencia } = {}) => {
+    const q = new URLSearchParams()
+    if (status) q.append('status', status)
+    if (cliente_id) q.append('cliente_id', cliente_id)
+    if (mes_referencia) q.append('mes_referencia', mes_referencia)
+    const qs = q.toString()
+    return req(`/pagamentos${qs ? '?' + qs : ''}`)
+  },
+  receber: (id, data) => req(`/pagamentos/${id}/receber`, { method: 'PATCH', body: data }),
+  verificarVencidos: () => req('/pagamentos/verificar-vencidos', { method: 'POST' }),
+}
+
 export const vendasApi = {
   listar: ({ mes_referencia, cliente_id, status_entrega } = {}) => {
     const q = new URLSearchParams()

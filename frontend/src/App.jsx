@@ -5,6 +5,7 @@ import ClienteDetalhe from './pages/Clientes/ClienteDetalhe'
 import Cestas from './pages/Cestas'
 import CestaDetalhe from './pages/Cestas/CestaDetalhe'
 import Vendas from './pages/Vendas'
+import Pagamentos from './pages/Pagamentos'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="cestas" element={<Cestas />} />
         <Route path="cestas/:id" element={<CestaDetalhe />} />
         <Route path="vendas" element={<Vendas />} />
+        <Route path="pagamentos" element={<Pagamentos />} />
       </Route>
     </Routes>
   )

@@ -144,6 +144,16 @@ class VendaEntregaUpdate(BaseModel):
     status_entrega: str
 
 
+class VendaSimples(BaseModel):
+    id: int
+    mes_referencia: str
+    quantidade: int
+    forma_pagamento: str
+    tipo_cesta: TipoCestaSimples
+
+    model_config = {"from_attributes": True}
+
+
 class VendaResponse(BaseModel):
     id: int
     cliente_id: int
@@ -158,3 +168,25 @@ class VendaResponse(BaseModel):
     pagamentos: List[PagamentoResponse] = []
 
     model_config = {"from_attributes": True}
+
+
+# ── Pagamentos ────────────────────────────────────────────────────────────────
+
+class PagamentoDetalheResponse(BaseModel):
+    id: int
+    venda_id: int
+    cliente_id: int
+    valor_esperado: float
+    valor_pago: Optional[float] = None
+    data_pagamento: Optional[date] = None
+    status: str
+    data_vencimento: Optional[date] = None
+    cliente: ClienteResponse
+    venda: VendaSimples
+
+    model_config = {"from_attributes": True}
+
+
+class ReceberPagamentoInput(BaseModel):
+    valor_pago: float
+    data_pagamento: Optional[date] = None
